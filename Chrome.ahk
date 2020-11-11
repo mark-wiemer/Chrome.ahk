@@ -68,7 +68,7 @@
 		
 		; Verify ChromePath
 		if (ChromePath == "")
-			FileGetShortcut, %A_StartMenuCommon%\Programs\Google Chrome.lnk, ChromePath
+			FileGetShortcut, %A_StartMenuCommon%\Programs\Microsoft Edge.lnk, ChromePath
 		if (ChromePath == "")
 			RegRead, ChromePath, HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe
 		if !FileExist(ChromePath)
