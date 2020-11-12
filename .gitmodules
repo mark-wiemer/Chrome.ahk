@@ -1,7 +1,8 @@
 [submodule "lib/AutoHotkey-JSON"]
 	path = lib/AutoHotkey-JSON
 	url = https://github.com/mark-wiemer/AutoHotkey-JSON
-	branch = stable
+	branch = v2
 [submodule "lib/WebSocket.ahk"]
 	path = lib/WebSocket.ahk
 	url = https://github.com/mark-wiemer/WebSocket.ahk
+	branch = v2
