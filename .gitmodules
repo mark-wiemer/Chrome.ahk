@@ -4,4 +4,3 @@
 [submodule "lib/AutoHotkey-JSON"]
 	path = lib/AutoHotkey-JSON
 	url = https://github.com/mark-wiemer/AutoHotkey-JSON.git
-	branch = boolean
