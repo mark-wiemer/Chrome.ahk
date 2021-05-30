@@ -20,26 +20,26 @@ if !(PageInst := ChromeInst.GetPage())
 else
 {
 	PageInst.WaitForLoad()
-	
-	
+
+
 	; --- Export a PDF of the page ---
-	
+
 	; Get the PDF in Base64
 	Base64PDF := PageInst.Call("Page.printToPDF").data
-	
+
 	; Convert to a normal binary PDF
 	Size := Base64_Decode(BinaryPDF, Base64PDF)
-	
+
 	; Write the binary PDF to a file
 	FileName := "Exported_" A_TickCount ".pdf"
 	FileOpen(FileName, "w").RawWrite(BinaryPDF, Size)
-	
+
 	; Open the file
 	Run, %FileName%
-	
-	
+
+
 	; --- Close the Chrome instance ---
-	
+
 	try
 		PageInst.Call("Browser.close") ; Fails when running headless
 	catch

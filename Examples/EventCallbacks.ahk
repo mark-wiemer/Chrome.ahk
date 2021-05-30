@@ -33,11 +33,11 @@ JS =
 ; https://blog.mgechev.com/2012/08/29/self-invoking-functions-in-javascript-or-immediately-invoked-function-expression/
 (function(){
 	var clickCount = 0;
-	
+
 	; Whenever the button tag with class someclass is clicked
 	document.querySelector("button.someclass").onclick = function() {
 		clickCount++;
-		
+
 		; Prefix the message with AHK: so it can be
 		; filtered out in the AHK-based callback function
 		console.log("AHK:" + clickCount);
@@ -54,8 +54,7 @@ Loop, %TestPages%
 	DataURLs.Push(Format(DataURL, A_Index))
 
 ; Open Chrome with those pages
-FileCreateDir, ChromeProfile
-ChromeInst := new Chrome("ChromeProfile", DataURLs)
+ChromeInst := new Chrome("", DataURLs)
 
 
 ; --- Connect to the pages ---
@@ -65,7 +64,7 @@ Loop, %TestPages%
 {
 	; Bind the page number to the function for extra information in the callback
 	BoundCallback := Func("Callback").Bind(A_Index)
-	
+
 	; Get an instance of the page, passing in the callback function
 	if !(PageInst := ChromeInst.GetPageByTitle(A_Index, "contains",, BoundCallback))
 	{
@@ -74,7 +73,7 @@ Loop, %TestPages%
 		ExitApp
 	}
 	PageInstances.Push(PageInst)
-	
+
 	; Enable console events and inject the JS payload
 	PageInst.WaitForLoad()
 	PageInst.Call("Console.enable")
@@ -105,7 +104,7 @@ Callback(PageNum, Event)
 	{
 		; Strip out the leading AHK:
 		Text := SubStr(Event.params.message.text, 5)
-		
+
 		ToolTip, Clicked %Text% times on page %PageNum%
 	}
 }
